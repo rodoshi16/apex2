@@ -43,7 +43,31 @@ namespace apex{
             return true; 
         }
 
+        bool consume(Order& order_out){
 
+            int64_t next = consumer_sequence_.load(std::memory_order_release) + 1;
+            
+            if (producer_sequence_.load(std::memory_order_acquire) < next) {
+                return false;
+            }
+
+            int64_t index = next & (RING_BUFFER_SIZE -1);
+            order_out = buffer_[index].order;
+
+
+            consumer_sequence_.store(next, std::memory_order_release);
+            return true;
+
+        }
+
+        int64_t producer_sequence() const{
+            return producer_sequence_.load(std::memory_order_relaxed);
+        }
+
+        int64_t consumer_sequence() const{
+            return consumer_sequence_.load(std::memory_order_relaxed);
+
+        }
 
         private:
             //producer and consumer are diff atomic variables on diff cache lines
