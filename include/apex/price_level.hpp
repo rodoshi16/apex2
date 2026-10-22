@@ -13,6 +13,8 @@ namespace apex{
 
         void add_order(Order order);
         bool cancel_order(uint64_t order_id);
+        // take quantity of amount of shares and the event to record: trade/rest
+        uint64_t fill(uint64_t quantity, std::vector<Event>& events_out);
         
 
         int64_t price() const {
