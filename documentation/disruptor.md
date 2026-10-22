@@ -43,5 +43,34 @@ Alignas(64) means place the object on a 64 byte memory boundary. This prevents f
 
 Take the load function which read the current value and then add 1 to get to the next slot. 
 
+producer_sequence_.load(std::memory_order_release) + 1 
+
+
+*** What is the algo for producer taking an order and consumer consuming one?***
+
+1. calc next slot = current_producer number + 1 
+2. wrap it by subtracting 1024 (since thats the cap)
+3. check if c < wrap -> this means consumer hasn't consumed so far so you would be overriding values 
+
+ex: if consumer is at 2 and your wrap = 3, 2 < 3 - return false here
+
+4. if not, then calculate the index, update its order and sequence
+5. update the producer var now and return TRUE 
+
+
+Same for consumer except check if p < c -> that would mean there is nothing to read yet since no orders published that far so return false
+
+otherwise update the var 
+
+*** memory_order_release vs relaxed vs acquire*** 
+
+use release when you want to announce the change to the consumer/producer
+
+relaxed is when you just want to know the counter value, reading the var
+
+acquire - use when reading a published value and you need to synchronize with the release operation. git
+
+
+
 
 
