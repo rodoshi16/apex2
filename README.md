@@ -1,4 +1,4 @@
-***Apex - a low latency exchange simulator in C++ *** 
+******Apex - a low latency exchange simulator in C++******
 
 **How do you squeeze performance out of hardware?**
 
