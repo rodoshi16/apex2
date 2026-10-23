@@ -45,4 +45,62 @@ namespace apex{
         std::normal_distribution<double> normal_;
     };
 
+
+    class MarketMaker{
+
+    public:
+        MarketMaker(
+            double gamma, 
+            double kappa, 
+            double sigma, 
+            int64_t half_spread_min_bps
+        ) : gamma_(gamma), 
+            kappa_(kappa),
+            sigma_(sigma), 
+            half_spread_min(half_spread_min_bps), 
+            inventory_(0), 
+            next_order_id_(1000000) {}
+        
+
+        std::pair<Order, Order> quote(int64_t mid_bps){
+            double mid = static_cast<double>(mid_bps);
+            double reservation = mid - inventory_ * gamma_ * sigma_ * sigma_;
+
+            double spread = gamma_ * sigma_ * sigma_
+                      + (2.0 / gamma_) * std::log(1.0 + gamma_ / kappa_);
+
+            
+
+        }
+        
+
+        
+
+    private:
+        double gamma_, kappa_, sigma_;
+        int64_t half_spread_min;
+        int64_t inventory_;
+        uint64_t next_order_id_; 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    }
+
+
+
+
+
+
+
 }
