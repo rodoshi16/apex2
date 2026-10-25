@@ -39,4 +39,5 @@ I also chose acquire/release memory ordering which compiles to ordinary load and
 References:
 
 - LMAX Disruptor: https://lmax-exchange.github.io/disruptor/ 
-- Orstein uhlenbeck process for simulation: https://www.quantt.co.uk/resources/ornstein-uhlenbeck-process 
+- Orstein uhlenbeck process for calculating mid price: https://www.quantt.co.uk/resources/ornstein-uhlenbeck-process
+- Avenella Stoikov model for Market Maker: https://medium.com/hummingbot/a-comprehensive-guide-to-avellaneda-stoikovs-market-making-strategy-102d64bf5df6 
