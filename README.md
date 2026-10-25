@@ -1,4 +1,11 @@
-******Apex - a low latency exchange simulator in C++******
+***Apex - a low latency exchange simulator in C++***
+
+Main components:
+
+- LMAX Disruptor
+- Limit Order Book
+- Price Levels
+- Simulation 
 
 **How do you squeeze performance out of hardware?**
 
