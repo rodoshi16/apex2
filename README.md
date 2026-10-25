@@ -5,7 +5,18 @@ Main components:
 - LMAX Disruptor
 - Limit Order Book
 - Price Levels
-- Simulation 
+- Simulation
+
+## Benchmark results
+
+| Operation | Latency | Throughput |
+|---|---|---|
+| Add limit order | 199ns | 5.03M / sec |
+| Cancel order | 157ns | 6.37M / sec |
+| Market order match | 1922ns | 520K / sec |
+| Object pool acquire | 8.96ns | 111M / sec |
+| Raw new/delete | 24.1ns | 41.7M / sec |
+
 
 **How do you squeeze performance out of hardware?**
 
